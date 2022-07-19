@@ -34,3 +34,11 @@ if respons.status_code == 200:
 else:
     print(f"Error! Status Code: {respons.status_code}")
     exit()
+
+print(f'''
+Weather Description -----> {weather_description}
+Tempreture --------------> {tempreture} Celsius
+Pressure ----------------> {pressure} hPa
+Humidity ----------------> {humidity} %
+Wind Speed --------------> {wind_speed} km/hr
+''')
