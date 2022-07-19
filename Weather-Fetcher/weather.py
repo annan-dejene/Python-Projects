@@ -1,7 +1,4 @@
-from platform import java_ver
-from urllib import response
 import requests
-import json
 
 
 # API Key provided by openweathermap.org to fetch wether data
@@ -29,6 +26,11 @@ url = 'https://api.openweathermap.org/data/2.5/weather'
 respons = requests.get(url=url, params=params)
 if respons.status_code == 200:
     json_response = respons.json()
-    print(respons.json())
+    weather_description = json_response['weather'][0]['description'].title()
+    tempreture = json_response['main']['temp']
+    pressure = json_response['main']['pressure']
+    humidity = json_response['main']['humidity']
+    wind_speed = json_response['wind']['speed']
 else:
+    print(f"Error! Status Code: {respons.status_code}")
     exit()
