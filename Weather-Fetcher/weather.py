@@ -12,9 +12,12 @@ def coordinate_from_city(city_name, API_KEY):
     params = {'q': city_name, 'appid': API_KEY}
     url = 'http://api.openweathermap.org/geo/1.0/direct'
     r = requests.get(url=url, params=params)
-    json_data = r.json()[0]
-
-    return json_data['lat'], json_data['lon']
+    if r.status_code == 200:
+        json_data = r.json()[0]
+        return json_data['lat'], json_data['lon']
+    else:
+        print(f"Error! Status Code: {r.status_code}")
+        exit()
 
 
 city = input('Enter your city: ')
@@ -24,5 +27,8 @@ params = {'lat': lat, 'lon': lon, 'appid': API_KEY, 'units': 'metric'}
 url = 'https://api.openweathermap.org/data/2.5/weather'
 
 respons = requests.get(url=url, params=params)
-
-print(respons.json())
+if respons.status_code == 200:
+    json_response = respons.json()
+    print(respons.json())
+else:
+    exit()
