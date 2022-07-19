@@ -20,7 +20,7 @@ def coordinate_from_city(city_name, API_KEY):
 city = input('Enter your city: ')
 (lat, lon) = coordinate_from_city(city_name=city, API_KEY=API_KEY)
 
-params = {'lat': lat, 'lon': lon, 'appid': API_KEY}
+params = {'lat': lat, 'lon': lon, 'appid': API_KEY, 'units': 'metric'}
 url = 'https://api.openweathermap.org/data/2.5/weather'
 
 respons = requests.get(url=url, params=params)
