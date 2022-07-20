@@ -1,3 +1,4 @@
+from os import system
 import requests
 
 
@@ -17,6 +18,7 @@ def coordinate_from_city(city_name, API_KEY):
         exit()
 
 
+system('cls')
 city = input('Enter your city: ')
 (lat, lon) = coordinate_from_city(city_name=city, API_KEY=API_KEY)
 
