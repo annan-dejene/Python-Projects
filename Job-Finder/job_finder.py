@@ -6,6 +6,10 @@ job_search = input('In What area are you searching a Job for: ')
 response = requests.get(
     f'https://www.timesjobs.com/candidate/job-search.html?searchType=personalizedSearch&from=submit&txtKeywords={job_search}&txtLocation=')
 
+if response.status_code != 200:
+    print('Error: ', response.status_code)
+    exit()
+
 input(
     f'\nWe will scrape this site\n{response.url}\nPress Enter to Continue...')
 
