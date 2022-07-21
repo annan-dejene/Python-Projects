@@ -43,11 +43,13 @@ for job in jobs:
         'ul', class_='top-jd-dtl clearfix').find('li').text.split('l')[-1]
     posted_time = job.find('span', class_='sim-posted').span.text
 
-    print(f'''
-    Company Name --------> {company_name}
-    Skills Required -----> {skills}
-    Experience ----------> {experience}
+    if 'few' in posted_time:
+        print(f'''
+        Company Name --------> {company_name}
+        Skills Required -----> {skills}
+        Experience ----------> {experience}
 
-        {posted_time}
-    ''')
+            {posted_time}
+        ''')
+
     break
