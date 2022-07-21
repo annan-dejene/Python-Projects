@@ -9,10 +9,19 @@ response = requests.get(
 html_text = response.text
 soup = BeautifulSoup(html_text, 'lxml')
 
-job = soup.find('li', class_='clearfix job-bx wht-shd-bx')
+jobs = soup.find_all('li', class_='clearfix job-bx wht-shd-bx')
 
-company_name = job.find('h3', class_='joblist-comp-name').text
-skills = job.find('span', class_='srp-skills').text
-experience = job.find('ul', class_='top-jd-dtl clearfix').li.text
-posted_time = job.find('span', class_='sim-posted').span.text
-print(posted_time)
+for job in jobs:
+    company_name = job.find('h3', class_='joblist-comp-name').text
+    skills = job.find('span', class_='srp-skills').text
+    experience = job.find('ul', class_='top-jd-dtl clearfix').li.text
+    posted_time = job.find('span', class_='sim-posted').span.text
+
+    print(f'''
+    Company Name --------> {company_name}
+    Skills Required -----> {skills}
+    Experience ----------> {experience}
+
+        {posted_time}
+    ''')
+    break
