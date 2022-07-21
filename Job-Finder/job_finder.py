@@ -8,4 +8,5 @@ response = requests.get(
 html_text = response.text
 soup = BeautifulSoup(html_text, 'lxml')
 
-print(soup.prettify())
+job = soup.find('li', class_='clearfix job-bx wht-shd-bx')
+company_name = job.find('h3', class_='joblist-comp-name').text
