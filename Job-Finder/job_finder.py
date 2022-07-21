@@ -1,3 +1,4 @@
+from cmath import exp
 import requests
 from bs4 import BeautifulSoup
 
@@ -12,3 +13,5 @@ job = soup.find('li', class_='clearfix job-bx wht-shd-bx')
 
 company_name = job.find('h3', class_='joblist-comp-name').text
 skills = job.find('span', class_='srp-skills').text
+experience = job.find('ul', class_='top-jd-dtl clearfix').li.text
+print(experience)
