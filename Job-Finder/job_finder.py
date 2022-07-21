@@ -2,8 +2,12 @@ import requests
 from bs4 import BeautifulSoup
 
 
+job_search = input('In What area are you searching a Job for: ')
 response = requests.get(
-    'https://www.timesjobs.com/candidate/job-search.html?searchType=personalizedSearch&from=submit&txtKeywords=Python&txtLocation=')
+    f'https://www.timesjobs.com/candidate/job-search.html?searchType=personalizedSearch&from=submit&txtKeywords={job_search}&txtLocation=')
+
+input(
+    f'\nWe will scrape this site\n{response.url}\nPress Enter to Continue...')
 
 html_text = response.text
 soup = BeautifulSoup(html_text, 'lxml')
