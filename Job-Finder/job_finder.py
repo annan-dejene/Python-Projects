@@ -14,7 +14,8 @@ jobs = soup.find_all('li', class_='clearfix job-bx wht-shd-bx')
 for job in jobs:
     company_name = job.find('h3', class_='joblist-comp-name').text
     skills = job.find('span', class_='srp-skills').text
-    experience = job.find('ul', class_='top-jd-dtl clearfix').li.text
+    experience = job.find(
+        'ul', class_='top-jd-dtl clearfix').find('li').text.split('l')[-1]
     posted_time = job.find('span', class_='sim-posted').span.text
 
     print(f'''
