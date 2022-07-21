@@ -20,10 +20,15 @@ def skills_parser(skills_to_be_parsed):
     return ', '.join(map(str, skills_parsed))
 
 
+def company_name_parser(comp_name_to_be_parsed):
+    return ' '.join(map(str, comp_name_to_be_parsed))
+
+
 jobs = soup.find_all('li', class_='clearfix job-bx wht-shd-bx')
 
 for job in jobs:
-    company_name = job.find('h3', class_='joblist-comp-name').text
+    company_name = company_name_parser(
+        job.find('h3', class_='joblist-comp-name').text.split())
     skills = skills_parser(
         job.find('span', class_='srp-skills').text.split())
     experience = job.find(
