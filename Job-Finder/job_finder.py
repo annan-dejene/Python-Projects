@@ -1,6 +1,9 @@
+import os
 import requests
 from bs4 import BeautifulSoup
 
+
+os.chdir(f'{os.getcwd()}\Job-Finder')
 
 job_search = input('In What area are you searching a Job for: ')
 response = requests.get(
@@ -34,22 +37,25 @@ def company_name_parser(comp_name_to_be_parsed):
 
 jobs = soup.find_all('li', class_='clearfix job-bx wht-shd-bx')
 
-for job in jobs:
-    company_name = company_name_parser(
-        job.find('h3', class_='joblist-comp-name').text.split())
-    skills = skills_parser(
-        job.find('span', class_='srp-skills').text.split())
-    experience = job.find(
-        'ul', class_='top-jd-dtl clearfix').find('li').text.split('l')[-1]
-    posted_time = job.find('span', class_='sim-posted').span.text
+with open(f'{job_search}-jobs.txt', 'a+') as f:
 
-    if 'few' in posted_time:
-        print(f'''
-        Company Name --------> {company_name}
-        Skills Required -----> {skills}
-        Experience ----------> {experience}
+    for job in jobs:
+        company_name = company_name_parser(
+            job.find('h3', class_='joblist-comp-name').text.split())
+        skills = skills_parser(
+            job.find('span', class_='srp-skills').text.split())
+        experience = job.find(
+            'ul', class_='top-jd-dtl clearfix').find('li').text.split('l')[-1]
+        posted_time = job.find('span', class_='sim-posted').span.text
 
-            {posted_time}
-        ''')
+        if 'few' in posted_time:
+            f.write(f'''
+            Company Name --------> {company_name}
+            Skills Required -----> {skills}
+            Experience ----------> {experience}
 
-    break
+                {posted_time}
+
+            ''')
+
+    print(f'Completed writing to the file {job_search}-jobs.txt')
