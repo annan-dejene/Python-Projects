@@ -14,7 +14,7 @@ if response.status_code != 200:
     exit()
 
 input(
-    f'\nWe will scrape this site\n{response.url}\nPress Enter to Continue...')
+    f'\nWe will scrape this site\n{response.url}\nPress Enter to Continue....')
 
 html_text = response.text
 soup = BeautifulSoup(html_text, 'lxml')
